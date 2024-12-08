@@ -1,7 +1,5 @@
 package com.password.generator;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -14,17 +12,19 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());  // Logger instance
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
-    private static final int PASSWORD_LENGTH = 12;
+    private static final SecureRandom random = new SecureRandom();
+    private static final int PASSWORD_LENGTH = 10 + random.nextInt(13);
     private static final String JSON_FILE_PATH = "generated_passwords.json";
 
     public static void main(String[] args) {
         setupLogger();  // Set up logger configuration
 
-        // Use try-with-resources to ensure Scanner is closed after use
         try (Scanner scanner = new Scanner(System.in)) {
             // Log the prompt for the number of passwords
             logger.info("Enter the Username or Email to save with the password: ");
@@ -47,14 +47,12 @@ public class Main {
             PasswordRecord passwordRecord = new PasswordRecord(generatedPassword, currentDate, currentTime, username);
             passwordList.add(passwordRecord);
 
-            // Write all generated passwords to JSON
             try {
                 writeToJSON(passwordList);
             } catch (IOException e) {
                 logger.severe("Error while writing passwords to JSON: " + e.getMessage());
             }
 
-            // Inform the user through the logger
             logger.info("Passwords generated and saved to " + JSON_FILE_PATH);
         }
     }
@@ -69,9 +67,9 @@ public class Main {
 
     // Add a new console handler
     ConsoleHandler consoleHandler = new ConsoleHandler();
-    consoleHandler.setLevel(Level.ALL);  // Set the log level to ALL
+    consoleHandler.setLevel(Level.ALL);
     rootLogger.addHandler(consoleHandler);
-    rootLogger.setLevel(Level.ALL);  // Ensure that all log levels are captured
+    rootLogger.setLevel(Level.ALL);
 }
 
 
