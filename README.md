@@ -1,6 +1,6 @@
 # Password Generator
 
-A simple Java application that generates secure passwords, saves them to a JSON file, and allows users to specify a username or email for each generated password. This project uses secure random password generation and logs the process for monitoring.
+This is a simple Java application that generates secure alphanumeric passwords, saves them to a JSON file, and allows users to specify a username for each generated password. This project uses secure random password generation and logs the process for monitoring.
 
 ## Features
 - **Generate Secure Passwords**: Generates random, secure passwords using a mix of characters.
