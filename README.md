@@ -24,3 +24,14 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/shlok-nahar/passwordgenerator.git
 cd passwordgenerator
+
+### 2. Build the Project
+
+```bash
+mvn clean compile
+
+
+### 3. Running the Application
+
+```bash
+java -cp target/classes com.password.generator.Main
