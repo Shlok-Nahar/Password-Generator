@@ -9,7 +9,7 @@ This is a simple Java application that generates secure alphanumeric passwords, 
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/shlok-nahar/passwordgenerator.git
+git clone https://github.com/Shlok-Nahar/Password-Generator.git
 cd passwordgenerator
 ```
 
